@@ -1,8 +1,13 @@
 # RTSPtoWSMP4f
 
-RTSP Stream to WebBrowser over WebSocket based MP4f segments
+RTSP Stream to WebBrowser MSE over WebSocket based MP4f segments
 
 ![RTSPtoWSMP4f image](doc/demo4.png)
+
+## Team
+
+Deepch - https://github.com/deepch streaming developer
+Dmitry - https://github.com/vdalex25 web developer
 
 ## Installation
 1.
@@ -49,6 +54,10 @@ format:
 
 ## Limitations
 
-Video Codecs Supported: H264
+Video Codecs Supported: H264 all profiles
 
-Audio Codecs Supported: AAC
+Audio Codecs Supported: AAC mono
+
+## Test
+
+CPU usage 0.2% one core cpu intel core i7
