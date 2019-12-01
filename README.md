@@ -61,4 +61,4 @@ Audio Codecs Supported: AAC mono
 
 ## Test
 
-CPU usage 0.2% one core cpu intel core i7
+CPU usage 0.2% one core cpu intel core i7 / stream
