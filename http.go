@@ -21,6 +21,7 @@ func serveHTTP() {
 			"port":     Config.Server.HTTPPort,
 			"suuid":    fi,
 			"suuidMap": all,
+			"version":  time.Now().String(),
 		})
 	})
 	router.GET("/player/:suuid", func(c *gin.Context) {
@@ -30,6 +31,7 @@ func serveHTTP() {
 			"port":     Config.Server.HTTPPort,
 			"suuid":    c.Param("suuid"),
 			"suuidMap": all,
+			"version":  time.Now().String(),
 		})
 	})
 	router.GET("/ws/:suuid", func(c *gin.Context) {
