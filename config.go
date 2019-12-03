@@ -89,8 +89,9 @@ func (element *ConfigST) list() (string, []string) {
 	}
 	return fist, res
 }
-func (element *ConfigST) clDe(uuid string) {
-	delete(element.Streams, uuid)
+
+func (element *ConfigST) clDe(suuid, cuuid string) {
+	delete(element.Streams[suuid].Cl, cuuid)
 }
 
 func pseudoUUID() (uuid string) {

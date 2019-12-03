@@ -50,7 +50,7 @@ func ws(ws *websocket.Conn) {
 		ws.SetWriteDeadline(time.Now().Add(5 * time.Second))
 		suuid := ws.Request().FormValue("suuid")
 		cuuid, ch := Config.clAd(suuid)
-		defer Config.clDe(cuuid)
+		defer Config.clDe(suuid, cuuid)
 		codecs := Config.coGe(suuid)
 		if codecs == nil {
 			log.Println("No Codec Info")
