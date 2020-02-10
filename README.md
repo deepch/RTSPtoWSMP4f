@@ -3,6 +3,7 @@
 RTSP Stream to WebBrowser MSE over WebSocket based MP4f segments
 
 full native! not use ffmpeg or gstreamer
+
 if you need RTSPtoWebRTC use https://github.com/deepch/RTSPtoWebRTC
 
 ![RTSPtoWSMP4f image](doc/demo4.png)
