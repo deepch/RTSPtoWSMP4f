@@ -10,17 +10,21 @@ import (
 	"github.com/deepch/vdk/av"
 )
 
+//Config global
 var Config = loadConfig()
 
+//ConfigST struct
 type ConfigST struct {
 	Server  ServerST            `json:"server"`
 	Streams map[string]StreamST `json:"streams"`
 }
 
+//ServerST struct
 type ServerST struct {
 	HTTPPort string `json:"http_port"`
 }
 
+//StreamST struct
 type StreamST struct {
 	URL    string `json:"url"`
 	Status bool   `json:"status"`
@@ -89,7 +93,6 @@ func (element *ConfigST) list() (string, []string) {
 	}
 	return fist, res
 }
-
 func (element *ConfigST) clDe(suuid, cuuid string) {
 	delete(element.Streams[suuid].Cl, cuuid)
 }

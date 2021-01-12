@@ -3,8 +3,8 @@
     "http_port": ":8083"
   },
   "streams": {
-    "demo1": {
-      "url": "rtsp://171.25.232.5/3e3019c02ad14b84bceb2b810db29918"
+    "H264_AAC": {
+      "url": "rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov"
     }
   }
 }
