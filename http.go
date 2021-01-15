@@ -14,8 +14,8 @@ import (
 )
 
 func serveHTTP() {
-	router := gin.New()
-	gin.SetMode(gin.ReleaseMode)
+	router := gin.Default()
+	gin.SetMode(gin.DebugMode)
 	router.LoadHTMLGlob("web/templates/*")
 	router.GET("/", func(c *gin.Context) {
 		fi, all := Config.list()
@@ -55,18 +55,19 @@ func ws(ws *websocket.Conn) {
 		log.Println("Stream Not Found")
 		return
 	}
+	Config.RunIFNotRun(suuid)
 	ws.SetWriteDeadline(time.Now().Add(5 * time.Second))
 	cuuid, ch := Config.clAd(suuid)
 	defer Config.clDe(suuid, cuuid)
 	codecs := Config.coGe(suuid)
+	if codecs == nil {
+		log.Println("Codecs Error")
+		return
+	}
 	for i, codec := range codecs {
 		if codec.Type().IsAudio() && codec.Type() != av.AAC {
 			log.Println("Track", i, "Audio Codec Work Only AAC")
 		}
-	}
-	if codecs == nil {
-		log.Println("Codecs Error")
-		return
 	}
 	muxer := mp4f.NewMuxer(nil)
 	err := muxer.WriteHeader(codecs)
@@ -110,7 +111,6 @@ func ws(ws *websocket.Conn) {
 			if !start {
 				continue
 			}
-
 			timeLine[pck.Idx] += pck.Duration
 			pck.Time = timeLine[pck.Idx]
 			ready, buf, _ := muxer.WritePacket(pck, false)
