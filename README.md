@@ -53,7 +53,7 @@ format:
 
 ## Limitations
 
-Video Codecs Supported: H264 all profiles
+Video Codecs Supported: H264 all profiles, H265 work only safari and (IE hw video card)
 
 Audio Codecs Supported: AAC
 

@@ -11,9 +11,9 @@
       "on_demand": true,
       "url": "rtsp://akaimp.duckdns.org/live/ch00_0"
     },
-    "PCM": {
+    "H265": {
       "on_demand": true,
-      "url": "rtsp://admin:admin123@10.128.18.224/mpeg4"
+      "url": "rtsp://171.25.232.14/37edec0a09174c639e21c9fc4cf9d9a1"
     },
     "H264_PCMALAW": {
       "on_demand": true,

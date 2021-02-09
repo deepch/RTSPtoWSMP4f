@@ -21,25 +21,27 @@ func serveStreams() {
 		}
 	}
 }
+
 func RTSPWorkerLoop(name, url string, OnDemand bool) {
 	defer Config.RunUnlock(name)
 	for {
-		log.Println("Stream Try Connect", name)
+		log.Println(name, "Stream Try Connect")
 		err := RTSPWorker(name, url, OnDemand)
 		if err != nil {
 			log.Println(err)
 		}
 		if OnDemand && !Config.HasViewer(name) {
-			log.Println(ErrorStreamExitNoViewer)
+			log.Println(name, ErrorStreamExitNoViewer)
 			return
 		}
 		time.Sleep(1 * time.Second)
 	}
 }
+
 func RTSPWorker(name, url string, OnDemand bool) error {
 	keyTest := time.NewTimer(20 * time.Second)
 	clientTest := time.NewTimer(20 * time.Second)
-	RTSPClient, err := rtspv2.Dial(rtspv2.RTSPClientOptions{URL: url, DisableAudio: false, DialTimeout: 3 * time.Second, ReadWriteTimeout: 3 * time.Second, Debug: false})
+	RTSPClient, err := rtspv2.Dial(rtspv2.RTSPClientOptions{URL: url, DisableAudio: true, DialTimeout: 3 * time.Second, ReadWriteTimeout: 3 * time.Second, Debug: false})
 	if err != nil {
 		return err
 	}
