@@ -53,6 +53,8 @@ func RTSPWorker(name, url string, OnDemand bool) error {
 	if len(RTSPClient.CodecData) == 1 && RTSPClient.CodecData[0].Type().IsAudio() {
 		AudioOnly = true
 	}
+	//MuxerNVR := nvr.NewMuxer(RTSPClient.CodecData, name, "nvr", 1*time.Second)
+	//defer MuxerNVR.Close()
 	for {
 		select {
 		case <-clientTest.C:
@@ -65,6 +67,7 @@ func RTSPWorker(name, url string, OnDemand bool) error {
 			switch signals {
 			case rtspv2.SignalCodecUpdate:
 				Config.coAd(name, RTSPClient.CodecData)
+				//MuxerNVR.CodecUpdate(RTSPClient.CodecData)
 			case rtspv2.SignalStreamRTPStop:
 				return ErrorStreamExitRtspDisconnect
 			}
@@ -72,6 +75,7 @@ func RTSPWorker(name, url string, OnDemand bool) error {
 			if AudioOnly || packetAV.IsKeyFrame {
 				keyTest.Reset(20 * time.Second)
 			}
+			//MuxerNVR.WritePacket(packetAV)
 			Config.cast(name, *packetAV)
 		}
 	}

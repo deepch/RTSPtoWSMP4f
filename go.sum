@@ -10,6 +10,8 @@ github.com/deepch/vdk v0.0.0-20210203031003-ae4ae47c04e1 h1:O7TrdSlVsYlQhfX7dcKU
 github.com/deepch/vdk v0.0.0-20210203031003-ae4ae47c04e1/go.mod h1:mFKn6/jT2OgoMrw/2kgoVDN67kokS5T3kRn04x3eJXg=
 github.com/deepch/vdk v0.0.0-20210209013919-981746cd6aa0 h1:Bk3BhhcXKnpNEf4oxIQyMlxAuQNV0Q5XNIW7C0BD+R8=
 github.com/deepch/vdk v0.0.0-20210209013919-981746cd6aa0/go.mod h1:EZi580zgIZQOVwMcApOE/rTxuWCHvP/9yAFkUro14LI=
+github.com/deepch/vdk v0.0.0-20210508200759-5adbbcc01f89 h1:LU4kMpxvMVnqyIU5iB0va7loq01eIl1cVeJpOhHoCX4=
+github.com/deepch/vdk v0.0.0-20210508200759-5adbbcc01f89/go.mod h1:EZi580zgIZQOVwMcApOE/rTxuWCHvP/9yAFkUro14LI=
 github.com/envoyproxy/go-control-plane v0.9.1-0.20191026205805-5f8ba28d4473/go.mod h1:YTl/9mNaCwkRvm6d1a2C3ymFceY/DCBVvsKhRF0iEA4=
 github.com/envoyproxy/protoc-gen-validate v0.1.0/go.mod h1:iSmxcyjqTsJpI2R4NaDN7+kN2VEUnK/pcBlmesArF7c=
 github.com/fsnotify/fsnotify v1.4.7/go.mod h1:jwhsz4b93w/PPRr/qN1Yymfu8t87LnFCMoQvtojpjFo=
