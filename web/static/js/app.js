@@ -6,11 +6,21 @@ if (!Uint8Array.prototype.slice) {
   });
 }
 
-var verbose = true;
+var verbose = false;
 var streamingStarted = false;
 var ms = new MediaSource();
 var queue = [];
 var ws;
+var livestream = document.getElementById('livestream');
+
+var hidden;
+if (typeof document.hidden !== "undefined") {
+  hidden = "hidden";
+} else if (typeof document.msHidden !== "undefined") {
+  hidden = "msHidden";
+} else if (typeof document.webkitHidden !== "undefined") {
+  hidden = "webkitHidden";
+}
 
 function pushPacket(arr) {
   var view = new Uint8Array(arr);
@@ -23,6 +33,7 @@ function pushPacket(arr) {
     streamingStarted = true;
     return;
   }
+
   queue.push(data);
   if (verbose) {
     console.log("queue push:", queue.length);
@@ -30,6 +41,7 @@ function pushPacket(arr) {
   if (!sourceBuffer.updating) {
     loadPacket();
   }
+
 }
 
 function loadPacket() {
@@ -58,7 +70,7 @@ if (location.protocol.indexOf('s') >= 0) {
 function opened() {
   var inputVal = $('#suuid').val();
   var port = $('#port').val();
-  ws = new WebSocket(potocol + "://127.0.0.1"+port+"/ws/live?suuid="+inputVal);
+  ws = new WebSocket(potocol + "://" + window.location.hostname + port + "/ws/live?suuid=" + inputVal);
   ws.binaryType = "arraybuffer";
   ws.onopen = function(event) {
     console.log('Connect');
@@ -66,7 +78,7 @@ function opened() {
   ws.onmessage = function(event) {
     var data = new Uint8Array(event.data);
     if (data[0] == 9) {
-      decoded_arr=data.slice(1);
+      decoded_arr = data.slice(1);
       if (window.TextDecoder) {
         mimeCodec = new TextDecoder("utf-8").decode(decoded_arr);
       } else {
@@ -81,9 +93,12 @@ function opened() {
     } else {
       pushPacket(event.data);
     }
+    if (document[hidden] && livestream.buffered.length) {//fix pause on hidden tabs
+     livestream.currentTime = livestream.buffered.end((livestream.buffered.length - 1)) - 1;
+    }
   };
 }
-var livestream = document.getElementById('livestream');
+
 
 function Utf8ArrayToStr(array) {
   var out, i, len, c;
@@ -119,7 +134,7 @@ function startup() {
 }
 
 $(document).ready(function() {
-startup();
+  startup();
   var suuid = $('#suuid').val();
-  $('#'+suuid).addClass('active');
+  $('#' + suuid).addClass('active');
 });
