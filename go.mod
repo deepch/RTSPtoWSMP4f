@@ -3,7 +3,7 @@ module github.com/deepch/RTSPtoWSMP4f
 go 1.15
 
 require (
-	github.com/deepch/vdk v0.0.0-20220127011006-13fad59f2c2f
+	github.com/deepch/vdk v0.0.0-20220303214059-7a7f15e1a59a
 	github.com/gin-gonic/gin v1.7.7
 	github.com/go-playground/validator/v10 v10.10.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
